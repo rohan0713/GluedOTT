@@ -21,6 +21,9 @@ An OTT streaming application built with **Kotlin**, **XML-based UI**, **MVVM**, 
 # Build the Debug APK
 ./gradlew assembleDebug
 
+# Build the Obfuscated & Shrunk Release APK
+./gradlew assembleRelease
+
 # Run Unit Tests
 ./gradlew testDebugUnitTest
 ```
@@ -34,8 +37,12 @@ An OTT streaming application built with **Kotlin**, **XML-based UI**, **MVVM**, 
 ./gradlew installDebug
 ```
 
-* **Generated APK Path**:
+* **Debug APK Path**:
   `app/build/outputs/apk/debug/app-debug.apk`
+* **Release APK Path (Obfuscated & Shrunk)**:
+  `app/build/outputs/apk/release/app-release.apk`
+* **ProGuard / R8 Mapping File**:
+  `app/build/outputs/mapping/release/mapping.txt`
 
 ---
 
@@ -284,3 +291,36 @@ val repository: ContentRepository = ContentRepositoryImpl(remoteDataSource)
 * **Offline Playback & DRM**: Offline video download/caching and Widevine DRM encryption are omitted as part of the current assignment scope.
 * **Track Selection**: Subtitle and audio track selection uses ExoPlayer's default controls rather than a custom modal bottom sheet.
 * **Authentication**: User profiles and authentication tokens are not integrated in the mock state.
+
+---
+
+## 9. Code Obfuscation & Shrinking (R8 / ProGuard)
+
+Release builds use **R8** for code shrinking, resource shrinking, optimization, and obfuscation.
+
+### Configuration (`app/build.gradle.kts`)
+```kotlin
+buildTypes {
+    release {
+        isMinifyEnabled = true
+        isShrinkResources = true
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro"
+        )
+        signingConfig = signingConfigs.getByName("release")
+    }
+}
+```
+
+### ProGuard Rules (`app/proguard-rules.pro`)
+* **Gson & DTO Models**: Preserves `@SerializedName` fields and models in `com.ott.gluedin.data.dto.**` and `com.ott.gluedin.domain.entity.**` to prevent reflection failures.
+* **Media3 / ExoPlayer**: Preserves dynamic codec discovery and UI components.
+* **Custom Views**: Keeps custom views like `TopCropImageView`.
+* **Coroutines & ViewModels**: Retains ViewModel reflection constructors and coroutine internals.
+* **Stack Tracing**: Retains `SourceFile` and `LineNumberTable` for retracing release crashes with `mapping.txt`.
+
+### Build Verification
+* Run `./gradlew assembleRelease` to produce the shrunk and obfuscated APK.
+* Mapping file output: `app/build/outputs/mapping/release/mapping.txt`.
+
