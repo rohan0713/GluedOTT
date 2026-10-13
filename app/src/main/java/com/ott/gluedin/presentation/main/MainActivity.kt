@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), HomeFragment.NavigationListener {
     }
 
     override fun onNavigateToDetail(contentId: String) {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         supportFragmentManager.commit {
             setCustomAnimations(
                 android.R.anim.fade_in,
@@ -36,7 +37,12 @@ class MainActivity : AppCompatActivity(), HomeFragment.NavigationListener {
                 android.R.anim.fade_in,
                 android.R.anim.fade_out
             )
-            replace(R.id.fragmentContainer, DetailFragment.newInstance(contentId))
+            if (currentFragment != null) {
+                hide(currentFragment)
+                add(R.id.fragmentContainer, DetailFragment.newInstance(contentId))
+            } else {
+                replace(R.id.fragmentContainer, DetailFragment.newInstance(contentId))
+            }
             addToBackStack("DetailFragment")
         }
     }

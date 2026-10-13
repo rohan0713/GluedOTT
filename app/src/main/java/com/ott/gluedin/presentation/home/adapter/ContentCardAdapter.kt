@@ -33,7 +33,7 @@ class ContentCardAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ContentItem) {
-            binding.tvTitle.text = item.title
+//            binding.tvTitle.text = item.title
             val subtitle = buildString {
                 if (item.duration.isNotBlank()) append(item.duration)
                 if (item.genres.isNotEmpty()) {
@@ -41,11 +41,12 @@ class ContentCardAdapter(
                     append(item.genres.first())
                 }
             }
-            binding.tvSubtitle.text = subtitle
+//            binding.tvSubtitle.text = subtitle
             binding.tvResolutionBadge.text = item.resolution
 
             binding.ivThumbnail.load(item.thumbnailUrl) {
                 crossfade(true)
+                scale(coil.size.Scale.FILL)
                 placeholder(R.drawable.bg_rounded_card)
                 error(R.drawable.bg_rounded_card)
             }

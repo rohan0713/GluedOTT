@@ -1,5 +1,6 @@
 package com.ott.gluedin.presentation.home.viewmodel
 
+import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,9 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val getHomeFeedUseCase: GetHomeFeedUseCase
 ) : ViewModel() {
+
+    val scrollStates: MutableMap<String, Parcelable> = mutableMapOf()
+    var verticalScrollY: Int = 0
 
     private val _uiState = MutableStateFlow<UiState<HomeFeed>>(UiState.Loading)
     val uiState: StateFlow<UiState<HomeFeed>> = _uiState.asStateFlow()

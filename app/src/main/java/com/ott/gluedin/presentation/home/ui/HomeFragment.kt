@@ -69,7 +69,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        railAdapter = CategoryRailAdapter { item ->
+        railAdapter = CategoryRailAdapter(viewModel.scrollStates) { item ->
+            railAdapter.saveAllScrollStates(binding.rvCategoryRails)
+            viewModel.verticalScrollY = binding.nsvHomeContent.scrollY
             navigationListener?.onNavigateToDetail(item.id)
         }
         binding.rvCategoryRails.apply {
@@ -110,7 +112,13 @@ class HomeFragment : Fragment() {
                 binding.tvHomeEmpty.isVisible = false
 
                 bindHeroBanner(state.data.heroBanner)
-                railAdapter.submitList(state.data.rails)
+                railAdapter.submitList(state.data.rails) {
+                    if (viewModel.verticalScrollY > 0) {
+                        _binding?.nsvHomeContent?.post {
+                            _binding?.nsvHomeContent?.scrollY = viewModel.verticalScrollY
+                        }
+                    }
+                }
             }
             is UiState.Empty -> {
                 binding.pbHomeLoading.isVisible = false
@@ -158,6 +166,10 @@ class HomeFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+        if (::railAdapter.isInitialized && _binding != null) {
+            railAdapter.saveAllScrollStates(binding.rvCategoryRails)
+            viewModel.verticalScrollY = binding.nsvHomeContent.scrollY
+        }
         super.onDestroyView()
         _binding = null
     }

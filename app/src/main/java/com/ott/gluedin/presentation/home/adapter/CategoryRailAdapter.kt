@@ -1,5 +1,6 @@
 package com.ott.gluedin.presentation.home.adapter
 
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,10 +12,10 @@ import com.ott.gluedin.domain.entity.CategoryRail
 import com.ott.gluedin.domain.entity.ContentItem
 
 class CategoryRailAdapter(
+    private val scrollStates: MutableMap<String, Parcelable> = mutableMapOf(),
     private val onItemClick: (ContentItem) -> Unit
 ) : ListAdapter<CategoryRail, CategoryRailAdapter.CategoryRailViewHolder>(RailDiffCallback) {
 
-    // Shared RecycledViewPool across all category rails for 60fps smooth scrolling
     private val sharedViewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryRailViewHolder {
@@ -23,20 +24,35 @@ class CategoryRailAdapter(
             parent,
             false
         )
-        return CategoryRailViewHolder(binding, sharedViewPool, onItemClick)
+        return CategoryRailViewHolder(binding, sharedViewPool, scrollStates, onItemClick)
     }
 
     override fun onBindViewHolder(holder: CategoryRailViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
+    override fun onViewRecycled(holder: CategoryRailViewHolder) {
+        holder.saveScrollState()
+        super.onViewRecycled(holder)
+    }
+
+    fun saveAllScrollStates(parentRecyclerView: RecyclerView) {
+        for (i in 0 until parentRecyclerView.childCount) {
+            val child = parentRecyclerView.getChildAt(i)
+            val holder = parentRecyclerView.getChildViewHolder(child) as? CategoryRailViewHolder
+            holder?.saveScrollState()
+        }
+    }
+
     class CategoryRailViewHolder(
         private val binding: ItemCategoryRailBinding,
         private val sharedPool: RecyclerView.RecycledViewPool,
+        private val scrollStates: MutableMap<String, Parcelable>,
         private val onItemClick: (ContentItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private val cardAdapter = ContentCardAdapter(onItemClick)
+        private var currentRailId: String? = null
 
         init {
             val layoutManager = LinearLayoutManager(
@@ -53,8 +69,25 @@ class CategoryRailAdapter(
         }
 
         fun bind(rail: CategoryRail) {
+            saveScrollState()
+            currentRailId = rail.railId
             binding.tvRailTitle.text = rail.title
-            cardAdapter.submitList(rail.items)
+            cardAdapter.submitList(rail.items) {
+                val savedState = scrollStates[rail.railId]
+                if (savedState != null) {
+                    binding.rvRailContent.layoutManager?.onRestoreInstanceState(savedState)
+                } else {
+                    binding.rvRailContent.scrollToPosition(0)
+                }
+            }
+        }
+
+        fun saveScrollState() {
+            currentRailId?.let { id ->
+                binding.rvRailContent.layoutManager?.onSaveInstanceState()?.let { state ->
+                    scrollStates[id] = state
+                }
+            }
         }
     }
 

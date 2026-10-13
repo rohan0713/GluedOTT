@@ -239,7 +239,7 @@
             ],
             "resolution": "4K HDR",
             "thumbnail_url": "https://image.tmdb.org/t/p/w500/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg",
-            "banner_url": "https://image.tmdb.org/t/p/w1280/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg",
             "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
             "stream_type": "MP4"
           },
@@ -277,7 +277,7 @@
             ],
             "resolution": "4K UHD",
             "thumbnail_url": "https://image.tmdb.org/t/p/w500/sgxawbFB5Vi5OkPWQLNfl3dvkNJ.jpg",
-            "banner_url": "https://image.tmdb.org/t/p/w1280/5g5b7z4j8n4Z0n6x0Q0Q7K2u3bH.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500/sgxawbFB5Vi5OkPWQLNfl3dvkNJ.jpg",
             "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
             "stream_type": "MP4"
           }
