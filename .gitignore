@@ -65,3 +65,10 @@ captures/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Keystore & Signing credentials (DO NOT COMMIT)
+*.jks
+*.keystore
+keystore-app
+keystore.properties
+

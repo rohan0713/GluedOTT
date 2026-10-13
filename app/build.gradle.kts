@@ -1,8 +1,28 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
 android {
+    signingConfigs {
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            if (keystorePropertiesFile.exists()) {
+                val properties = Properties().apply {
+                    keystorePropertiesFile.inputStream().use { load(it) }
+                }
+                val keystorePath = properties.getProperty("KEYSTORE_FILE") ?: "app/keystore-app"
+                val keystoreFile = rootProject.file(keystorePath).takeIf { it.exists() }
+                    ?: file(keystorePath)
+
+                storeFile = keystoreFile
+                storePassword = properties.getProperty("KEYSTORE_PASSWORD")
+                keyAlias = properties.getProperty("KEY_ALIAS")
+                keyPassword = properties.getProperty("KEY_PASSWORD")
+            }
+        }
+    }
     namespace = "com.ott.gluedin"
     compileSdk {
         version = release(37)
@@ -20,10 +40,7 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = true
-                packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
-            }
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     buildFeatures {
