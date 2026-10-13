@@ -60,8 +60,38 @@ class PlayerActivity : AppCompatActivity() {
 
         enableImmersiveFullscreen()
         setupViews()
+        setupPlayerControls()
         restoreSavedState(savedInstanceState)
         observeViewModel()
+    }
+
+    private fun setupPlayerControls() {
+        binding.playerView.setShowPreviousButton(false)
+        binding.playerView.setShowNextButton(false)
+        binding.playerView.setShowSubtitleButton(false)
+        binding.playerView.setShowShuffleButton(false)
+        binding.playerView.findViewById<View>(androidx.media3.ui.R.id.exo_settings)?.visibility = View.GONE
+
+        binding.playerView.setControllerVisibilityListener(androidx.media3.ui.PlayerView.ControllerVisibilityListener { visibility ->
+            binding.clTopOverlay.animate().cancel()
+            if (visibility == View.VISIBLE) {
+                binding.clTopOverlay.visibility = View.VISIBLE
+                binding.clTopOverlay.animate().alpha(1f).setDuration(200).start()
+            } else {
+                binding.clTopOverlay.animate().alpha(0f).setDuration(200).withEndAction {
+                    binding.clTopOverlay.visibility = View.GONE
+                }.start()
+            }
+        })
+
+        // Tapping on empty area of top overlay toggles controller just like tapping video
+        binding.clTopOverlay.setOnClickListener {
+            if (binding.playerView.isControllerFullyVisible) {
+                binding.playerView.hideController()
+            } else {
+                binding.playerView.showController()
+            }
+        }
     }
 
     private fun enableImmersiveFullscreen() {
@@ -162,6 +192,11 @@ class PlayerActivity : AppCompatActivity() {
             playWhenReady = playerManager.isPlaying()
             releasePlayer()
         }
+    }
+
+    override fun finish() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        super.finish()
     }
 
     override fun onDestroy() {

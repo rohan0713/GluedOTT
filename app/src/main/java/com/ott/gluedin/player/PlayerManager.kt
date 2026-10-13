@@ -50,7 +50,10 @@ class PlayerManager {
             .forceDisableMediaCodecAsynchronousQueueing()
             .setEnableDecoderFallback(true)
 
-        val player = ExoPlayer.Builder(appContext, renderersFactory).build()
+        val player = ExoPlayer.Builder(appContext, renderersFactory)
+            .setSeekBackIncrementMs(3000L)
+            .setSeekForwardIncrementMs(3000L)
+            .build()
         val bridge = PlayerEventBridge { event ->
             val enrichedEvent = enrichEventWithPosition(event, player)
             onEvent(enrichedEvent)
@@ -138,8 +141,22 @@ class PlayerManager {
         }
     }
 
+    fun seekForward(offsetMs: Long = DEFAULT_SEEK_DELTA_MS) {
+        exoPlayer?.let {
+            val newPos = (it.currentPosition + offsetMs).coerceAtMost(it.duration.coerceAtLeast(0L))
+            it.seekTo(newPos)
+        }
+    }
+
+    fun seekBack(offsetMs: Long = DEFAULT_SEEK_DELTA_MS) {
+        exoPlayer?.let {
+            val newPos = (it.currentPosition - offsetMs).coerceAtLeast(0L)
+            it.seekTo(newPos)
+        }
+    }
+
     companion object {
         private const val TAG = "PlayerManager"
-        private const val DEFAULT_SEEK_DELTA_MS = 10_000L
+        private const val DEFAULT_SEEK_DELTA_MS = 3_000L
     }
 }

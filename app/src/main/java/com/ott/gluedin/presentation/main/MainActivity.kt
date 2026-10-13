@@ -1,5 +1,6 @@
 package com.ott.gluedin.presentation.main
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), HomeFragment.NavigationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

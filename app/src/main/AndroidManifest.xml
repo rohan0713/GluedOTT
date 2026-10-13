@@ -15,6 +15,7 @@
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.GluedOTT.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,7 @@
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
         <activity

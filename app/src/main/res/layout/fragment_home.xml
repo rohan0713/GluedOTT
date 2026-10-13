@@ -182,7 +182,7 @@
                         android:layout_height="44dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/ott_surface_elevated"
-                        android:text="@string/view_details"
+                        android:text="@string/more_info"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="13sp"

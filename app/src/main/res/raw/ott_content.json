@@ -18,7 +18,7 @@
       "resolution": "4K UHD",
       "thumbnail_url": "https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
       "banner_url": "https://image.tmdb.org/t/p/w1280/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
-      "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+      "video_url": "https://test-videos.co.uk/vids/sintel/mp4/av1/720/Sintel_720_10s_1MB.mp4",
       "stream_type": "MP4"
     },
     "rails": [
@@ -101,6 +101,120 @@
             "thumbnail_url": "https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
             "banner_url": "https://image.tmdb.org/t/p/w1280/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
             "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_105",
+            "title": "Dark",
+            "short_description": "A missing child sets four families on a frantic hunt for answers across generations.",
+            "full_description": "When two children go missing in a small German town, its sinful past is exposed along with the double lives and fractured relationships that exist among four families as they search for the kids.",
+            "release_year": 2017,
+            "maturity_rating": "16+",
+            "duration": "58m",
+            "genres": [
+              "Sci-Fi",
+              "Mystery",
+              "Thriller"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500/apbrbWs8M9lyOpJYU5WXrpFbk1Z.jpg",
+            "video_url": "https://test-videos.co.uk/vids/sintel/mp4/av1/720/Sintel_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_106",
+            "title": "Peaky Blinders",
+            "short_description": "A notorious gang in 1919 Birmingham is led by the fierce Tommy Shelby.",
+            "full_description": "Britain is a mix of despair and hedonism in 1919 in the aftermath of the Great War. Returning soldiers, newly-minted revolutionaries and criminal gangs all fight for survival in an industrial landscape on the brink of revolution.",
+            "release_year": 2013,
+            "maturity_rating": "18+",
+            "duration": "55m",
+            "genres": [
+              "Crime",
+              "Drama",
+              "History"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_107",
+            "title": "Breaking Bad",
+            "short_description": "A chemistry teacher diagnosed with terminal lung cancer turns to manufacturing methamphetamine.",
+            "full_description": "Walter White, a high school chemistry teacher who learns he has terminal lung cancer, teams up with his former student Jesse Pinkman to produce and distribute crystal meth to secure his family's financial future.",
+            "release_year": 2008,
+            "maturity_rating": "18+",
+            "duration": "49m",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Thriller"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg",
+            "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_108",
+            "title": "Superman",
+            "short_description": "An anthology series exploring a twisted, high-tech multiverse where humanity's greatest innovations collide.",
+            "full_description": "Featuring stand-alone dramas about sharp, suspenseful, satirical tales that explore techno-paranoia, Black Mirror is a contemporary British drama television series created by Charlie Brooker.",
+            "release_year": 2011,
+            "maturity_rating": "18+",
+            "duration": "1h 02m",
+            "genres": [
+              "Sci-Fi",
+              "Drama",
+              "Thriller"
+            ],
+            "resolution": "4K HDR",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500//385XwTQZDpRX2d3kxtnpiLrjBXw.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500//385XwTQZDpRX2d3kxtnpiLrjBXw.jpg",
+            "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_109",
+            "title": "Hancock",
+            "short_description": "A chronicled look at the criminal exploits of Colombian drug lord Pablo Escobar.",
+            "full_description": "The gritty, action-packed drama follows the rise and fall of the Medellín cartel and the DEA agents dedicated to bringing them down in a bloody conflict that gripped Colombia and the United States.",
+            "release_year": 2015,
+            "maturity_rating": "18+",
+            "duration": "50m",
+            "genres": [
+              "Biography",
+              "Crime",
+              "Drama"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500//7DyuV2G0hLEqHeueDfOqhZ2DVut.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500//7DyuV2G0hLEqHeueDfOqhZ2DVut.jpg",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_110",
+            "title": "The Matrix",
+            "short_description": "A financial planner relocates his family to the Missouri Ozarks to launder money for a cartel.",
+            "full_description": "Marty Byrde must launder hundreds of millions of dollars after a scheme goes wrong, navigating local criminals, FBI investigations, and treacherous cartel bosses in the misty Ozark mountains.",
+            "release_year": 2017,
+            "maturity_rating": "18+",
+            "duration": "1h 00m",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Thriller"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500///f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w500///f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+            "video_url": "https://test-videos.co.uk/vids/sintel/mp4/av1/720/Sintel_720_10s_1MB.mp4",
             "stream_type": "MP4"
           }
         ]
@@ -209,6 +323,119 @@
             "resolution": "4K UHD",
             "thumbnail_url": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80",
             "banner_url": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_303",
+            "title": "Planet Earth II",
+            "short_description": "David Attenborough presents a stunning exploration of Earth's islands, mountains, jungles, and deserts.",
+            "full_description": "Experience the world from the viewpoint of animals themselves. Traveling through 40 countries, this series reveals the incredible ways animals overcome challenges to survive in the wild.",
+            "release_year": 2016,
+            "maturity_rating": "All",
+            "duration": "50m",
+            "genres": [
+              "Documentary",
+              "Nature",
+              "Wildlife"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_304",
+            "title": "The Queen's Gambit",
+            "short_description": "An orphaned chess prodigy struggles with addiction in a quest to become the greatest chess player.",
+            "full_description": "Orphaned at the tender age of nine, prodigious introvert Beth Harmon discovers and masters the game of chess in 1960s USA. But child stardom comes at a price.",
+            "release_year": 2020,
+            "maturity_rating": "16+",
+            "duration": "55m",
+            "genres": [
+              "Drama",
+              "Sport"
+            ],
+            "resolution": "4K HDR",
+            "thumbnail_url": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_305",
+            "title": "Chernobyl",
+            "short_description": "The gripping dramatization of the catastrophic 1986 nuclear accident and the heroes who saved Europe.",
+            "full_description": "In April 1986, an explosion at the Chernobyl nuclear power station in the USSR becomes one of the world's worst man-made catastrophes, exposing bureaucratic cowardice and extraordinary human courage.",
+            "release_year": 2019,
+            "maturity_rating": "18+",
+            "duration": "1h 05m",
+            "genres": [
+              "Drama",
+              "History",
+              "Thriller"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_306",
+            "title": "Mindhunter",
+            "short_description": "Two FBI agents delve into criminal psychology to solve ongoing serial killer cases.",
+            "full_description": "In the late 1970s, two FBI agents expand criminal science by interviewing imprisoned serial killers to understand how they think and apply that knowledge to unsolved investigations.",
+            "release_year": 2017,
+            "maturity_rating": "18+",
+            "duration": "55m",
+            "genres": [
+              "Crime",
+              "Drama",
+              "Mystery"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://test-videos.co.uk/vids/sintel/mp4/av1/720/Sintel_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_307",
+            "title": "Sherlock",
+            "short_description": "A modern update finds the famous sleuth and his doctor partner solving crime in 21st-century London.",
+            "full_description": "Sherlock Holmes and Dr. John Watson use brilliant forensic reasoning and modern technology to solve perplexing crimes in 21st-century London, facing dangerous adversaries like Jim Moriarty.",
+            "release_year": 2010,
+            "maturity_rating": "16+",
+            "duration": "1h 30m",
+            "genres": [
+              "Mystery",
+              "Crime",
+              "Drama"
+            ],
+            "resolution": "Full HD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_308",
+            "title": "Severance",
+            "short_description": "Employees undergo a surgical procedure to separate their work memories from personal memories.",
+            "full_description": "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outside of work, it begins a journey to discover the truth about their jobs.",
+            "release_year": 2022,
+            "maturity_rating": "16+",
+            "duration": "50m",
+            "genres": [
+              "Sci-Fi",
+              "Thriller",
+              "Mystery"
+            ],
+            "resolution": "4K HDR",
+            "thumbnail_url": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80",
             "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
             "stream_type": "MP4"
           }

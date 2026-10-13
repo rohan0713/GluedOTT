@@ -11,12 +11,16 @@
         android:id="@+id/playerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:controller_layout_id="@layout/exo_player_control_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:resize_mode="fit"
         app:show_buffering="when_playing"
+        app:show_next_button="false"
+        app:show_previous_button="false"
+        app:show_subtitle_button="false"
         app:show_timeout="4000"
         app:use_controller="true" />
 
@@ -24,8 +28,9 @@
         android:id="@+id/clTopOverlay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_player_top_scrim"
         android:paddingStart="16dp"
-        android:paddingTop="28dp"
+        android:paddingTop="20dp"
         android:paddingEnd="16dp"
         android:paddingBottom="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="12dp"
+            android:clickable="false"
             android:ellipsize="end"
+            android:focusable="false"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -59,7 +66,6 @@
             app:layout_constraintStart_toEndOf="@id/ibPlayerBack"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Tears of Steel" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

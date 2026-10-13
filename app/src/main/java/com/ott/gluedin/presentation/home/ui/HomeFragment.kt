@@ -23,6 +23,7 @@ import com.ott.gluedin.domain.usecase.GetHomeFeedUseCase
 import com.ott.gluedin.presentation.common.UiState
 import com.ott.gluedin.presentation.home.adapter.CategoryRailAdapter
 import com.ott.gluedin.presentation.home.viewmodel.HomeViewModel
+import com.ott.gluedin.presentation.player.PlayerActivity
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -141,9 +142,14 @@ class HomeFragment : Fragment() {
             error(R.color.ott_surface)
         }
 
-        // Both CTAs navigate to Content Detail Screen per Requirement 2
         binding.btnHeroPlay.setOnClickListener {
-            navigationListener?.onNavigateToDetail(hero.id)
+            val intent = PlayerActivity.createIntent(
+                context = requireContext(),
+                videoUrl = hero.videoUrl,
+                streamType = hero.streamType,
+                title = hero.title
+            )
+            startActivity(intent)
         }
 
         binding.btnHeroDetails.setOnClickListener {
