@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core Palette -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Netflix Cinematic Dark Theme -->
+    <color name="ott_background">#141414</color>
+    <color name="ott_surface">#1F1F1F</color>
+    <color name="ott_surface_elevated">#2B2B2B</color>
+    <color name="ott_card_border">#404040</color>
+
+    <!-- Brand Accents: Netflix Red -->
+    <color name="ott_accent_red">#E50914</color>
+    <color name="ott_accent_red_dark">#B20710</color>
+    <color name="ott_accent_gold">#E50914</color>
+    <color name="ott_accent_cyan">#F40612</color>
+
+    <!-- Typography -->
+    <color name="ott_text_primary">#FFFFFF</color>
+    <color name="ott_text_secondary">#B3B3B3</color>
+    <color name="ott_text_muted">#808080</color>
+
+    <!-- Shimmer & Scrim -->
+    <color name="ott_scrim_start">#00141414</color>
+    <color name="ott_scrim_mid">#99141414</color>
+    <color name="ott_scrim_end">#FF141414</color>
+    <color name="ott_badge_bg">#33FFFFFF</color>
+    <color name="ott_telemetry_bg">#CC000000</color>
+    <color name="ott_telemetry_accent">#46D369</color>
+</resources>

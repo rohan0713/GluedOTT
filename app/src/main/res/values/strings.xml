@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">GluedIN</string>
+    <string name="play">Play</string>
+    <string name="watch_now">Watch Now</string>
+    <string name="view_details">Details</string>
+    <string name="more_info">More Info</string>
+    <string name="retry">Retry</string>
+    <string name="error_loading_content">Unable to load content. Please check your connection.</string>
+    <string name="empty_content">No content available at this time.</string>
+    <string name="storyline">Storyline</string>
+    <string name="genres">Genres</string>
+    <string name="release_year">Release Year</string>
+    <string name="duration">Duration</string>
+    <string name="telemetry_live">TELEMETRY</string>
+    <string name="player_error">An error occurred during playback.</string>
+    <string name="back_button">back_button</string>
+    <string name="detail_image_content_description">detail_image_content_description</string>
+    <string name="splash_tagline">STREAM ENDLESS ENTERTAINMENT</string>
+</resources>

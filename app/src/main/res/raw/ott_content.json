@@ -1,0 +1,219 @@
+{
+  "status": "success",
+  "code": 200,
+  "data": {
+    "hero_banner": {
+      "id": "content_hero_001",
+      "title": "Stranger Things",
+      "short_description": "A group of friends uncovers supernatural mysteries in the small town of Hawkins.",
+      "full_description": "When a young boy disappears, his friends discover a mysterious girl, secret government experiments, and a terrifying alternate dimension known as the Upside Down.",
+      "release_year": 2016,
+      "maturity_rating": "16+",
+      "duration": "1h 00m",
+      "genres": [
+        "Sci-Fi",
+        "Horror",
+        "Drama"
+      ],
+      "resolution": "4K UHD",
+      "thumbnail_url": "https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
+      "banner_url": "https://image.tmdb.org/t/p/w1280/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+      "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+      "stream_type": "MP4"
+    },
+    "rails": [
+      {
+        "rail_id": "rail_trending_now",
+        "rail_title": "Trending Now",
+        "priority": 1,
+        "items": [
+          {
+            "id": "content_mov_101",
+            "title": "Wednesday",
+            "short_description": "Wednesday Addams investigates a series of mysterious murders at Nevermore Academy.",
+            "full_description": "Wednesday Addams navigates friendships, psychic visions, and supernatural secrets while investigating a dangerous mystery connected to her family's past.",
+            "release_year": 2022,
+            "maturity_rating": "13+",
+            "duration": "45m",
+            "genres": [
+              "Mystery",
+              "Comedy",
+              "Fantasy"
+            ],
+            "resolution": "Full HD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/9PFonBhy4cQy7Jz20NpMygczOkv.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg",
+            "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_102",
+            "title": "Squid Game",
+            "short_description": "Hundreds of cash-strapped contestants compete in deadly versions of childhood games.",
+            "full_description": "Desperate for money, contestants accept an invitation to compete in a mysterious series of games. The prize promises financial freedom, but losing comes at a deadly cost.",
+            "release_year": 2021,
+            "maturity_rating": "18+",
+            "duration": "55m",
+            "genres": [
+              "Thriller",
+              "Drama",
+              "Survival"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/2meX1nMdScFOoV4370rqHWKmXhY.jpg",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_103",
+            "title": "The Witcher",
+            "short_description": "A solitary monster hunter navigates a world filled with magic, kingdoms, and dangerous creatures.",
+            "full_description": "Geralt of Rivia, a mutated monster hunter, struggles to find his place in a world where humans can prove more monstrous than the beasts he hunts.",
+            "release_year": 2019,
+            "maturity_rating": "18+",
+            "duration": "1h 00m",
+            "genres": [
+              "Fantasy",
+              "Action",
+              "Adventure"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
+            "video_url": "https://test-videos.co.uk/vids/sintel/mp4/av1/720/Sintel_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_104",
+            "title": "Money Heist",
+            "short_description": "A criminal mastermind recruits a team for an ambitious heist on Spain's Royal Mint.",
+            "full_description": "A mysterious man known as the Professor brings together a group of skilled criminals to execute an elaborate robbery while negotiating with the police and managing tensions inside the building.",
+            "release_year": 2017,
+            "maturity_rating": "18+",
+            "duration": "1h 10m",
+            "genres": [
+              "Crime",
+              "Thriller",
+              "Drama"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/gFZriCkpJYsApPZEF3jhxL4yLzG.jpg",
+            "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          }
+        ]
+      },
+      {
+        "rail_id": "rail_action_thrillers",
+        "rail_title": "Action & Thrillers",
+        "priority": 2,
+        "items": [
+          {
+            "id": "content_mov_201",
+            "title": "Extraction 2",
+            "short_description": "A black-market mercenary returns for another dangerous rescue mission.",
+            "full_description": "Tyler Rake takes on a perilous mission to rescue a ruthless gangster's imprisoned family from a heavily guarded compound, pushing his survival skills to the limit.",
+            "release_year": 2023,
+            "maturity_rating": "18+",
+            "duration": "2h 03m",
+            "genres": [
+              "Action",
+              "Thriller",
+              "Crime"
+            ],
+            "resolution": "4K HDR",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/7gKI9hpEMcZUQpNgKrkDzJpbnNS.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_202",
+            "title": "The Night Agent",
+            "short_description": "An FBI agent answers a call that pulls him into a dangerous political conspiracy.",
+            "full_description": "A low-level FBI agent working a secret emergency phone line becomes entangled in a conspiracy that reaches the highest levels of government.",
+            "release_year": 2023,
+            "maturity_rating": "16+",
+            "duration": "50m",
+            "genres": [
+              "Mystery",
+              "Thriller",
+              "Action"
+            ],
+            "resolution": "Full HD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w1280/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+            "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_203",
+            "title": "Lupin",
+            "short_description": "A clever gentleman thief draws inspiration from the legendary Arsène Lupin.",
+            "full_description": "Assane Diop uses disguise, deception, and ingenious schemes to expose a powerful family's crimes and avenge the injustice suffered by his father.",
+            "release_year": 2021,
+            "maturity_rating": "16+",
+            "duration": "45m",
+            "genres": [
+              "Crime",
+              "Mystery",
+              "Drama"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://image.tmdb.org/t/p/w500/sgxawbFB5Vi5OkPWQLNfl3dvkNJ.jpg",
+            "banner_url": "https://image.tmdb.org/t/p/w1280/5g5b7z4j8n4Z0n6x0Q0Q7K2u3bH.jpg",
+            "video_url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
+            "stream_type": "MP4"
+          }
+        ]
+      },
+      {
+        "rail_id": "rail_recommended",
+        "rail_title": "Recommended For You",
+        "priority": 3,
+        "items": [
+          {
+            "id": "content_mov_301",
+            "title": "Our Planet",
+            "short_description": "Explore the world's most remarkable habitats and the wildlife that calls them home.",
+            "full_description": "This nature documentary series travels across the planet, revealing extraordinary wildlife, breathtaking ecosystems, and the impact of environmental change.",
+            "release_year": 2019,
+            "maturity_rating": "All",
+            "duration": "50m",
+            "genres": [
+              "Nature",
+              "Documentary",
+              "Wildlife"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/360/Jellyfish_360_10s_1MB.mp4",
+            "stream_type": "MP4"
+          },
+          {
+            "id": "content_mov_302",
+            "title": "The Crown",
+            "short_description": "A historical drama exploring the reign of Queen Elizabeth II and the events that shaped Britain.",
+            "full_description": "From political rivalries to personal struggles, this historical drama follows the British royal family through decades of changing society and monumental events.",
+            "release_year": 2016,
+            "maturity_rating": "16+",
+            "duration": "55m",
+            "genres": [
+              "Historical Drama",
+              "Biography",
+              "Politics"
+            ],
+            "resolution": "4K UHD",
+            "thumbnail_url": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=800&q=80",
+            "banner_url": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1920&q=80",
+            "video_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "stream_type": "MP4"
+          }
+        ]
+      }
+    ]
+  }
+}
