@@ -1,6 +1,6 @@
 # GluedOTT - Android OTT Application
 
-An OTT streaming application built with **Kotlin**, **XML-based UI**, **MVVM**, **Clean Architecture**, and **Android Media3 (ExoPlayer)**.
+An OTT streaming application built with **Kotlin**, **XML-based UI**, **MVVM**, **Clean Architecture**, **Dagger Hilt (KSP)**, and **Android Media3 (ExoPlayer)**.
 
 ---
 
@@ -48,20 +48,21 @@ An OTT streaming application built with **Kotlin**, **XML-based UI**, **MVVM**, 
 
 ## 2. Architecture Overview
 
-The application strictly adheres to **Clean Architecture** and **MVVM (Model-View-ViewModel)** with **Unidirectional Data Flow (UDF)**. This guarantees clear separation of concerns, high testability, and decoupled layers.
+The application strictly adheres to **Clean Architecture** and **MVVM (Model-View-ViewModel)** with **Unidirectional Data Flow (UDF)** and **Dagger Hilt** for Dependency Injection. This guarantees clear separation of concerns, high testability, and decoupled layers.
 
 ```
        ┌────────────────────────────────────────────────────────┐
        │                   Presentation Layer                   │
-       │   • Activities & Fragments (XML + ViewBinding)         │
-       │   • ViewModels (StateFlow / UDF)                       │
+       │   • Activities & Fragments (@AndroidEntryPoint)        │
+       │   • ViewModels (@HiltViewModel, StateFlow, UDF)        │
        │   • Adapters (ListAdapter + DiffUtil + Shared Pools)   │
        └───────────────────────────┬────────────────────────────┘
                                    │ User Actions / Observes UiState
                                    ▼
        ┌────────────────────────────────────────────────────────┐
        │                      Domain Layer                      │
-       │   • Use Cases (GetHomeFeed, GetDetail, TrackEvent)     │
+       │   • Use Cases (@Inject constructor)                    │
+       │       (GetHomeFeed, GetDetail, TrackEvent)             │
        │   • Domain Entities (ContentItem, CategoryRail, etc.)  │
        │   • Repository Contracts (Interfaces)                  │
        └───────────────────────────┬────────────────────────────┘
@@ -69,12 +70,19 @@ The application strictly adheres to **Clean Architecture** and **MVVM (Model-Vie
                                    ▼
        ┌────────────────────────────────────────────────────────┐
        │                       Data Layer                       │
-       │   • Repository Implementations                         │
+       │   • Repository Implementations (@Inject, @Singleton)   │
        │   • DTOs (Data Transfer Objects with Gson annotations) │
-       │   • Mappers (ContentDtoMapper)                         │
+       │   • Mappers (ContentDtoMapper @Inject)                 │
        │   • Remote Data Source Abstraction                     │
        │       - MockJsonContentDataSource (Current)            │
        │       - RetrofitContentDataSource (Future)             │
+       └───────────────────────────▲────────────────────────────┘
+                                   │
+       ┌───────────────────────────┴────────────────────────────┐
+       │                 Dependency Injection (Hilt)            │
+       │   • AppModule: Application-level Singletons (Gson)     │
+       │   • RepositoryModule: Interface to Impl bindings       │
+       │   • DispatchersModule: Qualified CoroutineDispatchers  │
        └────────────────────────────────────────────────────────┘
 ```
 
@@ -93,6 +101,11 @@ The project is structured logically by layer and feature under `com.ott.gluedin`
 
 ```
 com.ott.gluedin/
+├── GluedOttApp.kt                              // @HiltAndroidApp Application class
+├── di/                                         // Dagger Hilt Dependency Injection Modules
+│   ├── AppModule.kt                            // Gson & global singletons
+│   ├── RepositoryModule.kt                     // Interface-to-Implementation bindings (@Binds)
+│   └── DispatchersModule.kt                    // Qualified Dispatchers (@IoDispatcher, etc.)
 ├── domain/                                     // Pure Kotlin Business Logic (Zero Android dependencies)
 │   ├── entity/
 │   │   ├── ContentItem.kt                      // Core media item entity
@@ -103,48 +116,49 @@ com.ott.gluedin/
 │   │   ├── ContentRepository.kt                // Content data contract
 │   │   └── AnalyticsRepository.kt              // Telemetry tracking contract
 │   └── usecase/
-│       ├── GetHomeFeedUseCase.kt               // Fetch home feed use case
-│       ├── GetContentDetailUseCase.kt          // Fetch content item by ID
-│       └── TrackPlayerEventUseCase.kt          // Process player analytics events
+│       ├── GetHomeFeedUseCase.kt               // Fetch home feed use case (@Inject)
+│       ├── GetContentDetailUseCase.kt          // Fetch content item by ID (@Inject)
+│       └── TrackPlayerEventUseCase.kt          // Process player analytics events (@Inject)
 ├── data/                                       // Data Access & Mapping Layer
 │   ├── datasource/
 │   │   ├── ContentRemoteDataSource.kt          // Remote data source abstraction
-│   │   └── MockJsonContentDataSource.kt        // Raw JSON asset mock implementation
+│   │   └── MockJsonContentDataSource.kt        // Raw JSON asset mock implementation (@Inject)
 │   ├── dto/
 │   │   ├── HomeFeedResponseDto.kt              // DTO for home API response
 │   │   ├── CategoryRailDto.kt                  // DTO for rail payload
 │   │   └── ContentItemDto.kt                   // DTO for media item
 │   ├── mapper/
-│   │   └── ContentDtoMapper.kt                 // Maps DTOs to Domain Entities
+│   │   └── ContentDtoMapper.kt                 // Maps DTOs to Domain Entities (@Inject)
 │   └── repository/
-│       ├── ContentRepositoryImpl.kt            // Concrete ContentRepository
-│       └── AnalyticsRepositoryImpl.kt          // Concrete AnalyticsRepository (Logcat & stream)
+│       ├── ContentRepositoryImpl.kt            // Concrete ContentRepository (@Inject, @Singleton)
+│       └── AnalyticsRepositoryImpl.kt          // Concrete AnalyticsRepository (@Inject, @Singleton)
 ├── player/                                     // Media3 / ExoPlayer Engine
 │   ├── PlayerManager.kt                        // Lifecycle-aware player manager
 │   └── PlayerEventBridge.kt                    // Translates Player.Listener to Domain Events
 └── presentation/                               // UI & ViewModels (Feature-packaged)
     ├── common/
-    │   └── UiState.kt                          // Unified sealed interface for UI state
+    │   ├── UiState.kt                          // Unified sealed interface for UI state
+    │   └── TopCropImageView.kt                 // Custom ImageView anchoring scale to top
     ├── splash/
-    │   └── SplashActivity.kt                   // Branded animated splash screen
+    │   └── SplashActivity.kt                   // Branded animated splash screen (@AndroidEntryPoint)
     ├── main/
-    │   └── MainActivity.kt                     // Container Activity managing navigation
+    │   └── MainActivity.kt                     // Container Activity managing navigation (@AndroidEntryPoint)
     ├── home/
     │   ├── ui/
-    │   │   └── HomeFragment.kt                 // Home Screen (Hero Banner + Category Rails)
+    │   │   └── HomeFragment.kt                 // Home Screen (@AndroidEntryPoint, Hero + Rails)
     │   ├── viewmodel/
-    │   │   └── HomeViewModel.kt                // Home Screen StateFlow ViewModel
+    │   │   └── HomeViewModel.kt                // @HiltViewModel with StateFlow & scroll state
     │   └── adapter/
     │       ├── CategoryRailAdapter.kt          // Vertical adapter for rails (Shared ViewPool)
     │       └── ContentCardAdapter.kt           // Horizontal adapter for content cards
     ├── detail/
     │   ├── ui/
-    │   │   └── DetailFragment.kt               // Detail Screen (Backdrop, Metadata, Play CTA)
+    │   │   └── DetailFragment.kt               // Detail Screen (@AndroidEntryPoint, Backdrop, Play CTA)
     │   └── viewmodel/
-    │       └── DetailViewModel.kt              // Detail Screen ViewModel
+    │       └── DetailViewModel.kt              // @HiltViewModel for Detail Screen
     └── player/
-        ├── PlayerActivity.kt                   // Fullscreen immersive video player
-        └── PlayerViewModel.kt                  // Coordinates telemetry and UI state
+        ├── PlayerActivity.kt                   // Fullscreen player (@AndroidEntryPoint)
+        └── PlayerViewModel.kt                  // @HiltViewModel coordinating telemetry & state
 ```
 
 ---
@@ -153,6 +167,8 @@ com.ott.gluedin/
 
 | Library | Version | Purpose |
 | :--- | :--- | :--- |
+| **Dagger Hilt** | `2.60.1` | Compile-time Dependency Injection framework |
+| **Google KSP** | `2.3.6` | Kotlin Symbol Processing for fast, modern annotation processing |
 | **AndroidX Core KTX** | `1.19.1` | Kotlin extensions for Android framework APIs |
 | **AndroidX AppCompat** | `1.8.0` | Backward-compatible Android components |
 | **Material Components** | `1.14.0` | Material 3 components and dark theme styling |
@@ -173,23 +189,26 @@ com.ott.gluedin/
 
 1. **Clean Separation of Concerns & Dependency Inversion:**
    * The UI layer never interacts with the data layer or raw DTOs directly; it communicates exclusively via Domain Use Cases.
-   * Repositories depend on abstractions (`ContentRemoteDataSource`), not concrete network implementations.
+   * Repositories depend on abstractions (`ContentRemoteDataSource`), bound cleanly via Hilt.
 
 2. **RecyclerView Performance Optimizations:**
    * **`RecyclerView.RecycledViewPool` Sharing:** The parent `CategoryRailAdapter` shares a single `RecycledViewPool` among all horizontal rail adapters, minimizing view inflation churn during fast vertical scrolling.
    * **`ListAdapter` + `DiffUtil`:** Computes item differences on background threads to ensure 60fps scrolling.
-   * **Prefetching:** Configured `initialPrefetchItemCount = 4` on horizontal rail layout managers.
+   * **Rail Scroll State Preservation:** Horizontal scroll positions and vertical offset are preserved in `HomeViewModel` and restored seamlessly upon returning from detail views.
 
-3. **Lifecycle Safety & Memory Leak Prevention:**
+3. **Image Scaling & Visual Polish:**
+   * Custom `TopCropImageView` anchors poster images to `dy = 0` (top crop), ensuring movie titles and faces are never clipped by center-cropping.
+
+4. **Lifecycle Safety & Memory Leak Prevention:**
    * `StateFlow` collection uses `repeatOnLifecycle(Lifecycle.State.STARTED)`, suspending collectors when the app moves to the background.
    * ViewBinding references in Fragments are set to `null` in `onDestroyView()` to prevent memory leaks.
    * `ExoPlayer` is managed via `PlayerManager` using `context.applicationContext` to avoid Activity leaks, releasing on `onStop` (API $\ge$ 24) or `onPause` (API < 24).
 
-4. **Playback State Retention:**
+5. **Playback State Retention:**
    * Playback position and `playWhenReady` flags are preserved across screen rotations and process death via `onSaveInstanceState` and restored seamlessly.
 
-5. **Type-Safe Fragment Navigation:**
-   * `DetailFragment.newInstance(contentId)` uses the static factory method pattern to encapsulate argument bundling and guarantee argument preservation across OS fragment recreation.
+6. **Orientation Management:**
+   * Home and Detail screens are locked to portrait orientation; `PlayerActivity` runs in sensor landscape. When exiting the player, the orientation explicitly reverts to portrait to avoid landscape leakage.
 
 ---
 
@@ -234,13 +253,12 @@ I/OTT_ANALYTICS: Telemetry Event Logged: PLAYER_SEEKED [From: 12400ms -> To: 450
 I/OTT_ANALYTICS: Telemetry Event Logged: PLAYER_PAUSED [Position: 45200ms]
 I/OTT_ANALYTICS: Telemetry Event Logged: PLAYER_COMPLETED [Total Duration: 734000ms]
 ```
-A live telemetry indicator is also displayed on the player interface for real-time visual verification.
 
 ---
 
-## 7. How the Mock Data Source Would Be Replaced With a Real API
+## 7. Replacing Mock Data Source with Real API (Retrofit)
 
-The application is completely **API-Ready**. To switch from mock JSON to a production backend (e.g., Retrofit / Ktor):
+With Hilt in place, replacing mock data with a production backend requires **zero changes** to ViewModels, Use Cases, Entities, or UI:
 
 ### Step 1: Define the Retrofit API Interface
 ```kotlin
@@ -255,9 +273,10 @@ interface OttApiService {
 
 ### Step 2: Implement `ContentRemoteDataSource`
 ```kotlin
-class RetrofitContentDataSource(
+@Singleton
+class RetrofitContentDataSource @Inject constructor(
     private val apiService: OttApiService,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ContentRemoteDataSource {
 
     override suspend fun getHomeFeed(): HomeFeedResponseDto = withContext(ioDispatcher) {
@@ -270,31 +289,25 @@ class RetrofitContentDataSource(
 }
 ```
 
-### Step 3: Swap the Dependency
+### Step 3: Update Hilt `RepositoryModule`
 ```kotlin
-// In your DI Module or Factory:
-val remoteDataSource: ContentRemoteDataSource = RetrofitContentDataSource(apiService)
-val repository: ContentRepository = ContentRepositoryImpl(remoteDataSource)
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindContentRemoteDataSource(
+        impl: RetrofitContentDataSource // Simply change binding from MockJson to Retrofit
+    ): ContentRemoteDataSource
+    
+    // ...
+}
 ```
 
-### Impact on the rest of the application:
-* **UI Layer**: `0` lines changed.
-* **ViewModels**: `0` lines changed.
-* **Use Cases**: `0` lines changed.
-* **Domain Entities**: `0` lines changed.
-* **Repository Implementation**: `0` lines changed.
-
 ---
 
-## 8. Known Limitations
-
-* **Offline Playback & DRM**: Offline video download/caching and Widevine DRM encryption are omitted as part of the current assignment scope.
-* **Track Selection**: Subtitle and audio track selection uses ExoPlayer's default controls rather than a custom modal bottom sheet.
-* **Authentication**: User profiles and authentication tokens are not integrated in the mock state.
-
----
-
-## 9. Code Obfuscation & Shrinking (R8 / ProGuard)
+## 8. Code Obfuscation & Shrinking (R8 / ProGuard)
 
 Release builds use **R8** for code shrinking, resource shrinking, optimization, and obfuscation.
 
@@ -313,14 +326,15 @@ buildTypes {
 }
 ```
 
-### ProGuard Rules (`app/proguard-rules.pro`)
+### ProGuard Rules Highlights (`app/proguard-rules.pro`)
+* **Dagger & Hilt**: Preserves Hilt component wrappers, DI modules, and generated factories.
 * **Gson & DTO Models**: Preserves `@SerializedName` fields and models in `com.ott.gluedin.data.dto.**` and `com.ott.gluedin.domain.entity.**` to prevent reflection failures.
 * **Media3 / ExoPlayer**: Preserves dynamic codec discovery and UI components.
 * **Custom Views**: Keeps custom views like `TopCropImageView`.
-* **Coroutines & ViewModels**: Retains ViewModel reflection constructors and coroutine internals.
+* **Coroutines & ViewModels**: Retains ViewModel constructors and coroutine internals.
 * **Stack Tracing**: Retains `SourceFile` and `LineNumberTable` for retracing release crashes with `mapping.txt`.
 
-### Build Verification
-* Run `./gradlew assembleRelease` to produce the shrunk and obfuscated APK.
+### Size Reduction Results
+* **Debug APK**: `~14.4 MB`
+* **Release APK (Optimized, Shrunk & Obfuscated)**: **`4.85 MB`** (~66% reduction)
 * Mapping file output: `app/build/outputs/mapping/release/mapping.txt`.
-
