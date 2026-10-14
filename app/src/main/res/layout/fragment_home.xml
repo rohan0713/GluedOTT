@@ -21,7 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clHeroBanner"
                 android:layout_width="match_parent"
-                android:layout_height="380dp">
+                android:layout_height="400dp">
 
                 <ImageView
                     android:id="@+id/ivHeroBackdrop"

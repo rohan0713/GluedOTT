@@ -6,12 +6,15 @@ import androidx.lifecycle.viewModelScope
 import com.ott.gluedin.domain.entity.ContentItem
 import com.ott.gluedin.domain.usecase.GetContentDetailUseCase
 import com.ott.gluedin.presentation.common.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val getContentDetailUseCase: GetContentDetailUseCase
 ) : ViewModel() {
 
@@ -30,18 +33,6 @@ class DetailViewModel(
                         message = throwable.localizedMessage ?: "Failed to load content details"
                     )
                 }
-        }
-    }
-
-    class Factory(
-        private val getContentDetailUseCase: GetContentDetailUseCase
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
-                return DetailViewModel(getContentDetailUseCase) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
 }

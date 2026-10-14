@@ -9,7 +9,9 @@ import com.ott.gluedin.R
 import com.ott.gluedin.databinding.ActivityMainBinding
 import com.ott.gluedin.presentation.detail.ui.DetailFragment
 import com.ott.gluedin.presentation.home.ui.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), HomeFragment.NavigationListener {
 
     private lateinit var binding: ActivityMainBinding

@@ -9,7 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.ott.gluedin.presentation.main.MainActivity
 import com.ott.gluedin.databinding.ActivitySplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
             {
                 val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }, 3000
         )
     }

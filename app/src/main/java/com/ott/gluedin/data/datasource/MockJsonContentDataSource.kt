@@ -5,14 +5,18 @@ import com.google.gson.Gson
 import com.ott.gluedin.R
 import com.ott.gluedin.data.dto.ContentItemDto
 import com.ott.gluedin.data.dto.HomeFeedResponseDto
+import com.ott.gluedin.di.IoDispatcher
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MockJsonContentDataSource(
-    private val context: Context,
-    private val gson: Gson = Gson(),
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+@Singleton
+class MockJsonContentDataSource @Inject constructor(
+    @param:ApplicationContext private val context: Context,
+    private val gson: Gson,
+    @param:IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ContentRemoteDataSource {
 
     private val feedResponse: HomeFeedResponseDto by lazy {

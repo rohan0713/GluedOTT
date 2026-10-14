@@ -16,12 +16,12 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.ott.gluedin.data.repository.AnalyticsRepositoryImpl
 import com.ott.gluedin.databinding.ActivityPlayerBinding
-import com.ott.gluedin.domain.usecase.TrackPlayerEventUseCase
 import com.ott.gluedin.player.PlayerManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PlayerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlayerBinding
@@ -30,11 +30,7 @@ class PlayerActivity : AppCompatActivity() {
         PlayerManager()
     }
 
-    private val viewModel: PlayerViewModel by viewModels {
-        val repository = AnalyticsRepositoryImpl()
-        val useCase = TrackPlayerEventUseCase(repository)
-        PlayerViewModel.Factory(useCase)
-    }
+    private val viewModel: PlayerViewModel by viewModels()
 
     private val videoUrl: String by lazy {
         intent.getStringExtra(EXTRA_VIDEO_URL).orEmpty()

@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.ott.gluedin.domain.entity.HomeFeed
 import com.ott.gluedin.domain.usecase.GetHomeFeedUseCase
 import com.ott.gluedin.presentation.common.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val getHomeFeedUseCase: GetHomeFeedUseCase
 ) : ViewModel() {
 
@@ -42,18 +45,6 @@ class HomeViewModel(
                         message = throwable.localizedMessage ?: "Failed to load OTT content"
                     )
                 }
-        }
-    }
-
-    class Factory(
-        private val getHomeFeedUseCase: GetHomeFeedUseCase
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-                return HomeViewModel(getHomeFeedUseCase) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
 }

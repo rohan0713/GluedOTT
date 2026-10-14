@@ -4,11 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ott.gluedin.domain.entity.PlayerAnalyticsEvent
 import com.ott.gluedin.domain.usecase.TrackPlayerEventUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
-class PlayerViewModel(
+@HiltViewModel
+class PlayerViewModel @Inject constructor(
     private val trackPlayerEventUseCase: TrackPlayerEventUseCase
 ) : ViewModel() {
 
@@ -30,17 +33,5 @@ class PlayerViewModel(
             is PlayerAnalyticsEvent.PlaybackError -> "ERROR: ${event.errorCode}"
         }
         _lastEvent.value = formattedEventDisplay
-    }
-
-    class Factory(
-        private val trackPlayerEventUseCase: TrackPlayerEventUseCase
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(PlayerViewModel::class.java)) {
-                return PlayerViewModel(trackPlayerEventUseCase) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-        }
     }
 }

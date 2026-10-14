@@ -67,3 +67,12 @@
 -keepclassmembers class * implements android.os.Parcelable {
     static ** CREATOR;
 }
+
+# ------------------------------------------------------------------------------------
+# Dagger & Hilt
+# ------------------------------------------------------------------------------------
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn javax.annotation.**
+-keep class * extends dagger.hilt.android.internal.managers.ViewComponentManager$FragmentContextWrapper { *; }
+-keep class com.ott.gluedin.di.** { *; }
+

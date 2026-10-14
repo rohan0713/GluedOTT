@@ -4,8 +4,11 @@ import android.util.Log
 import com.ott.gluedin.domain.entity.PlayerAnalyticsEvent
 import com.ott.gluedin.domain.repository.AnalyticsRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AnalyticsRepositoryImpl : AnalyticsRepository {
+@Singleton
+class AnalyticsRepositoryImpl @Inject constructor() : AnalyticsRepository {
 
     companion object {
         private const val TAG = "OTT_ANALYTICS"

@@ -7,7 +7,9 @@ import com.ott.gluedin.domain.entity.CategoryRail
 import com.ott.gluedin.domain.entity.ContentItem
 import com.ott.gluedin.domain.entity.HomeFeed
 
-class ContentDtoMapper {
+import javax.inject.Inject
+
+class ContentDtoMapper @Inject constructor() {
 
     fun mapToDomain(dto: HomeFeedResponseDto): HomeFeed {
         val data = dto.data ?: throw IllegalStateException("API response data payload is null")

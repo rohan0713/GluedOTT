@@ -12,16 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import com.ott.gluedin.R
-import com.ott.gluedin.data.datasource.MockJsonContentDataSource
-import com.ott.gluedin.data.repository.ContentRepositoryImpl
 import com.ott.gluedin.databinding.FragmentDetailBinding
 import com.ott.gluedin.domain.entity.ContentItem
-import com.ott.gluedin.domain.usecase.GetContentDetailUseCase
 import com.ott.gluedin.presentation.common.UiState
 import com.ott.gluedin.presentation.detail.viewmodel.DetailViewModel
 import com.ott.gluedin.presentation.player.PlayerActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
@@ -31,12 +30,7 @@ class DetailFragment : Fragment() {
         arguments?.getString(ARG_CONTENT_ID).orEmpty()
     }
 
-    private val viewModel: DetailViewModel by viewModels {
-        val dataSource = MockJsonContentDataSource(requireContext().applicationContext)
-        val repository = ContentRepositoryImpl(dataSource)
-        val useCase = GetContentDetailUseCase(repository)
-        DetailViewModel.Factory(useCase)
-    }
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

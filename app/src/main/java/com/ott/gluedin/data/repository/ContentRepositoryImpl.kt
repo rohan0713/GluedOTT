@@ -5,10 +5,13 @@ import com.ott.gluedin.data.mapper.ContentDtoMapper
 import com.ott.gluedin.domain.entity.ContentItem
 import com.ott.gluedin.domain.entity.HomeFeed
 import com.ott.gluedin.domain.repository.ContentRepository
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ContentRepositoryImpl(
+@Singleton
+class ContentRepositoryImpl @Inject constructor(
     private val remoteDataSource: ContentRemoteDataSource,
-    private val mapper: ContentDtoMapper = ContentDtoMapper()
+    private val mapper: ContentDtoMapper
 ) : ContentRepository {
 
     override suspend fun getHomeFeed(): Result<HomeFeed> = runCatching {
